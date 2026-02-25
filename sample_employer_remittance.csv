@@ -1,0 +1,9 @@
+employer,employee_id,gross_salary,remitted_amount
+Alpha Ltd,E001,12000,500
+Alpha Ltd,E002,40000,1000
+Alpha Ltd,E003,100000,1700
+Beta School,E101,18000,600
+Beta School,E102,75000,1400
+Gamma Clinic,E201,30000,900
+Gamma Clinic,E202,95000,1600
+Gamma Clinic,E203,5500,150
