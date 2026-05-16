@@ -12,16 +12,16 @@ if ($Clean) {
 & $PythonExe -m pip install --upgrade pip
 & $PythonExe -m pip install -r requirements.txt
 
-# Build a Windows desktop executable folder that includes backend/frontend assets.
 & $PythonExe -m PyInstaller `
   --noconfirm `
   --clean `
-  --name DocFind `
+  --name RECT `
   --windowed `
   --add-data "frontend;frontend" `
   --add-data "backend;backend" `
   --hidden-import backend.main `
   desktop\launcher.py
 
-Write-Host "Build complete: dist\\DocFind\\DocFind.exe"
-Write-Host "To produce an installer, run Inno Setup with installer\\DocFind.iss"
+Write-Host "Build complete: dist\RECT\RECT.exe"
+Write-Host "Persistent SQLite data is stored in %APPDATA%\RECT unless RECT_DATA_DIR is set."
+Write-Host "To produce an installer, run Inno Setup with installer\RECT.iss"
