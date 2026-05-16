@@ -1,20 +1,21 @@
-#define MyAppName "DocFind"
+#define MyAppName "RECT"
 #define MyAppVersion "1.0.0"
-#define MyAppPublisher "DocFind"
-#define MyAppExeName "DocFind.exe"
+#define MyAppPublisher "Compliance Operations"
+#define MyAppExeName "RECT.exe"
 
 [Setup]
-AppId={{5EB24A01-7D15-40A2-8C88-4ABAFB196A91}
+AppId={{6B901217-CC2C-47B7-A5E2-FF21E8BA02D1}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 DefaultDirName={autopf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 OutputDir=dist\installer
-OutputBaseFilename=DocFind-Setup
+OutputBaseFilename=RECT-Setup
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
+PrivilegesRequired=lowest
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -23,7 +24,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "Create a desktop icon"; GroupDescription: "Additional icons:"; Flags: unchecked
 
 [Files]
-Source: "dist\DocFind\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "dist\RECT\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

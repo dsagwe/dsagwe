@@ -3,19 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DocFind</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>RECT Compliance Tracker</title>
     <style>
-      .skeleton { background: linear-gradient(90deg, #e2e8f0 25%, #f8fafc 37%, #e2e8f0 63%); background-size: 400% 100%; animation: pulse 1.4s ease infinite; }
-      @keyframes pulse { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
-      .dark .skeleton { background: linear-gradient(90deg, #1e293b 25%, #334155 37%, #1e293b 63%); }
+      :root { color-scheme: light; --slate:#0f172a; --muted:#64748b; --border:#e2e8f0; --teal:#0f766e; --red:#dc2626; }
+      * { box-sizing: border-box; } body { margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:#f1f5f9; color:#0f172a; }
+      header { background:#020617; color:white; } .wrap { max-width:1280px; margin:0 auto; padding:24px; } .top { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+      .eyebrow { color:#5eead4; font-size:12px; letter-spacing:.3em; font-weight:800; } h1 { margin:.25rem 0; font-size:28px; } h2 { margin:0; font-size:26px; } h3 { margin:.1rem 0 .5rem; }
+      .muted { color:var(--muted); } .small { font-size:12px; } .btn { border:0; border-radius:10px; padding:10px 14px; background:var(--slate); color:white; font-weight:800; cursor:pointer; text-decoration:none; display:inline-block; } .btn.teal { background:#0d9488; } .btn.red { background:var(--red); }
+      .grid { display:grid; gap:16px; } .stats { grid-template-columns: repeat(5, minmax(0,1fr)); } .layout { grid-template-columns: .95fr 1.35fr; align-items:start; }
+      .card { background:white; border:1px solid var(--border); border-radius:18px; box-shadow:0 8px 24px rgba(15,23,42,.05); overflow:hidden; } .pad { padding:18px; } .metric { font-size:26px; font-weight:950; margin-top:8px; }
+      input, textarea, select { width:100%; border:1px solid #cbd5e1; border-radius:10px; padding:10px; font:inherit; } textarea { min-height:110px; resize:vertical; } .row { display:flex; gap:8px; align-items:center; } .between { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
+      .list { max-height:620px; overflow:auto; } .item { width:100%; border:0; border-bottom:1px solid var(--border); background:white; padding:14px 16px; text-align:left; cursor:pointer; } .item:hover,.item.active { background:#ecfeff; }
+      .badge { border-radius:999px; padding:3px 10px; font-size:12px; font-weight:900; white-space:nowrap; } .compliant{background:#dcfce7;color:#166534}.in_default{background:#fef3c7;color:#92400e}.critical{background:#fee2e2;color:#991b1b}.unknown{background:#f1f5f9;color:#334155}
+      table { border-collapse:collapse; width:100%; font-size:14px; } th { background:#f8fafc; color:#475569; text-align:left; } th,td { border-top:1px solid var(--border); padding:10px; } td.num,th.num { text-align:right; }
+      .two { grid-template-columns:1fr 1fr; } .four { grid-template-columns:repeat(4,1fr); } .timeline { border-top:1px solid var(--border); padding:14px 16px; } .hidden { display:none; }
+      @media (max-width: 1000px) { .stats,.layout,.two,.four { grid-template-columns:1fr; } .top { display:block; } }
     </style>
   </head>
-  <body class="bg-slate-100 dark:bg-slate-900">
-    <div id="root"></div>
-    <script type="text/babel" src="/static/main.js"></script>
+  <body>
+    <header><div class="wrap top"><div><div class="eyebrow">RECT</div><h1>Relational Engagement & Compliance Tracker</h1><p class="muted">Longitudinal SHIF employer compliance intelligence, enforcement workflow, and evidentiary audit trail.</p></div><a class="btn teal" href="/api/export/employers.csv">Export Registry CSV</a></div></header>
+    <main class="wrap grid">
+      <section id="stats" class="grid stats"></section>
+      <section class="grid layout">
+        <div class="grid">
+          <div class="card pad"><div class="row"><input id="query" placeholder="Search employer, SHA code, or KRA PIN"><button id="search" class="btn">Search</button></div></div>
+          <div class="card"><div class="pad"><strong>Employer Master Registry</strong></div><div id="employer-list" class="list"></div></div>
+        </div>
+        <div id="detail" class="grid"><div class="card pad">Select an employer to view its longitudinal compliance record.</div></div>
+      </section>
+    </main>
+    <script src="/static/main.js"></script>
   </body>
 </html>
